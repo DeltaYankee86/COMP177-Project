@@ -29,7 +29,7 @@ positions = {
 }
 
 
-'''
+''' Note: Below is the means to hard code & add a node manually
 # Add nodes and provide label names
 G.add_node("A")
 G.add_node("B")
@@ -40,7 +40,7 @@ G.add_node("F")
 '''
 
 
-'''
+''' Note: Below is the means to hard code & add an edge manually
 # Add edges from first node to the next one
 G.add_edge("A", "C")
 G.add_edge("B", "C")
