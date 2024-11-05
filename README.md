@@ -10,4 +10,6 @@ Dynamic routing mechanism design in faulty network
 
 3) **Install networkx**
 
-4) 
+4) **Create Python virtual environment**
+
+5) **Run Code**

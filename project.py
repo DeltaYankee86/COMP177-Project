@@ -4,9 +4,9 @@ import numpy as np
 import random
 
 #Remove the three lines of code below to get rid of the fixed nodes' position and their edges
-seed=50
-random.seed(50)
-np.random.seed(50)
+seed=0
+random.seed(0)
+np.random.seed(0)
 
 G = nx.Graph()
 
