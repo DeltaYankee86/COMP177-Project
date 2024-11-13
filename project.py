@@ -18,6 +18,8 @@ G.add_nodes_from(["A", "B", "C", "D", "E", "F"])
 # Generate positions using networkx layout function
 #positions = nx.spring_layout(G, seed=seed)
 
+
+# 11-12-2024 @2142 - Commented out to test out the various drawing functions of networkx
 # Manually inputting positions of the code
 positions = {
     "A": (-3, 2),
@@ -68,13 +70,21 @@ G.add_edges_from([
 edge_labels={(u,v): d["cost_of_link"] for u, v, d in G.edges(data=True)}
 
 # Properties of styling the nodes and edges
-nx.draw(G, pos=positions, with_labels=True, node_color="blue", 
+# 11-12-2024 @ 2143 - removed attribute 'pos=positions'
+# @ 2143 - going to test out different graph drawings
+# various graph drawings: .draw, .draw_random, .draw_circular, .draw_shell, .draw_planar, .draw_spring
+nx.draw_spring(G, with_labels=True, node_color="blue", 
         node_size=3000, font_color="white", font_weight="bold",
         font_size="20", font_family="Times New Roman", 
         edge_color="lightgray", width=5)
 
 # Draws the labels/attributes for the edges
+# # 11-12-2024 @ 2143 - removed attribute 'pos=positions'
 nx.draw_networkx_edge_labels(G, pos=positions, edge_labels=edge_labels, label_pos = 0.5)
+
+# networkx built-in function to output shortest path
+# call graph name, then from node to node
+print(nx.shortest_path(G, "A", "F"))
 
 plt.margins(0.2)
 plt.show()
