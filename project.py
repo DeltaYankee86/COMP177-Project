@@ -102,13 +102,17 @@ def main():
     while over is False:
         try:
             selection = int(input("\n [0] - Draw graph with labels\n [1] - See shortest path\n [2] - EXIT\n"))
+            # Draw the topology
             if selection == 0:
                 draw()
+            # Output the Dijkstra's algorithm of the shortest path from starting node to destination node
             if selection == 1:
                 dijkstra()
+            # Exit
             if selection == 2:
                 print(" GOODBYE ")
                 over = True
+        # Any invalid well result in staying in the menu
         except ValueError:
             print("Invalid input. Please center a valid selection.")
             
