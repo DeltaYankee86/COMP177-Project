@@ -7,7 +7,14 @@
         <link href = "{{ url_for('static', filename='index-style.css') }}" rel="stylesheet">
     </head>
     <body>
-        <h1>TESTING OUT THE HTML PAGE</h1>
+        <h1>COMP 177 - Computer Networking <br><br> Dynamic routing mechanism design in faulty network</h1><hr><br>
+        <div id="option-container">
+            <h3>Please select from the following options:</h3>
+            <div class="selection-option"><a href="">Display Topology</a></div>
+            <div class="selection-option"><a href="">Kill A Node</a></div>
+            <div class="selection-option"><a href="">Display Shortest Path</a></div>
+            <div class="selection-option"><a href="">Exit</a></div>
+        </div>
     </body>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </html>

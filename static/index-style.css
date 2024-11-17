@@ -1,4 +1,43 @@
 body{
     background-color: black;
     color: white;
+    text-align: center;
+    font-family: Arial, san-serif;
+}
+
+h1{
+    margin-top: 5em;
+}
+
+hr{
+    width: 80%;
+}
+
+#option-container{
+    text-align: center;
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.selection-option{
+    height: 60px;
+    width: 200px;
+    border: solid 2px white;
+    border-radius: 2%;
+    text-align: center;
+    justify-content: center;
+    margin: 2em auto;
+    align-items: center;
+}
+
+.selection-option:hover{
+    background-color: orange;
+}
+
+.selection-option a{
+    text-decoration: none;
+    color: white;
+    line-height: 60px;
+    font-weight: 800;
 }
