@@ -1,7 +1,9 @@
-from flask import Flask, render_template, Response
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import networkx as nx
 import io
+from flask import Flask, render_template, Response, request
 
 app = Flask (__name__)
 
@@ -78,6 +80,15 @@ def display_topology():
     plt.close(0)
 
     return Response(img.getvalue(), mimetype='image/png')
+
+@app.route('/exit')
+def exit():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        return "Server shutdown is not supported in this environment.", 500
+    func()
+    return "Server shutting down..."
+
 
 if __name__ == "__main__":
     app.run(debug=True)
