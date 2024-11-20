@@ -75,7 +75,7 @@ def display_topology():
     plt.figure(figsize=(12,12))
     plt.margins(0.2)
     
-    nx.draw(G, with_labels=True, 
+    nx.draw_spring(G, with_labels=True, 
             node_color="blue", 
             node_size=2000,
             font_size=10, 
@@ -109,7 +109,7 @@ def dijkstra():
 
         # Draw the shortest path graph
         plt.figure(figsize=(12, 12))
-        nx.draw(subgraph, with_labels=True,
+        nx.draw_spring(subgraph, with_labels=True,
                 node_color="green",
                 edge_color="red",
                 node_size=2000,
