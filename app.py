@@ -15,6 +15,7 @@ app = Flask (__name__)
 G = nx.Graph()
 
 # Global nodes & edges
+"""
 edges = [
     ("A", "B"),
     ("A", "C"),
@@ -63,6 +64,36 @@ edges = [
     ("N", "L"),
     ("N", "M")
 ]
+"""
+# NOV 21 @2127 trying out a smaller graph goings from A to H
+edges = [
+    ("A", "B"),
+    ("A", "C"),
+    ("A", "D"),
+    ("B", "A"),
+    ("B", "C"),
+    ("B", "E"),
+    ("C", "A"),
+    ("C", "B"),
+    ("C", "F"),
+    ("C", "D"),
+    ("D", "A"),
+    ("D", "C"),
+    ("D", "G"),
+    ("E", "B"),
+    ("E", "F"),
+    ("E", "H"),
+    ("F", "C"),
+    ("F", "E"),
+    ("F", "H"),
+    ("F", "G"),
+    ("G", "F"),
+    ("G", "D"),
+    ("G", "H"),
+    ("H", "E"),
+    ("H", "F"),
+    ("H", "G"),
+]
 
 # Add edges with random weights
 for edge in edges:
@@ -85,7 +116,8 @@ def display_topology():
 
     # draw graph
     plt.figure(figsize=(12,12))
-        
+
+    # Originally was drawn as planar, trying out different combos
     nx.draw_planar(G, with_labels=True,
             node_color="blue", 
             node_size=2000,
@@ -110,7 +142,8 @@ def dijkstra():
 
     # Use global graph G to compute the shortest path
     source = "A"
-    target = "N"
+    # note --> Decreasing the graph size to minimize overlapping edge labels/nodes and crossing edges -- target = "N"
+    target = "H"
     try:
         # Set's shortest path using Dijkstra's algorithm
         shortest_path = nx.dijkstra_path(G, source=source, target=target, weight="weight")
@@ -133,6 +166,7 @@ def dijkstra():
         # Draw the shortest path graph
         plt.figure(figsize=(12, 12))
 
+        # Shortest path graph will display the nodes in green and edges in red
         nx.draw(subgraph, pos, with_labels=True,
                 node_color="green",
                 edge_color="red",
