@@ -95,13 +95,26 @@ edges = [
     ("H", "G"),
 ]
 
+# Nodes in position of a diamond
+pos = {
+    "A": (-2, 0),
+    "B": (1, 2),
+    "C": (1, 0),
+    "D": (1, -2),
+    "E": (3, 2),
+    "F": (3, 0),
+    "G": (3, -2),
+    "H": (6, 0),
+}
+
 # Add edges with random weights
 for edge in edges:
     weight = round(random.uniform(0, 1), 2) # Round to 2 sig figs
     G.add_edge(edge[0], edge[1], weight=weight)
 
 # Rolling with a planar layout to minimize crossing edges and overlapping nodes
-pos = nx.planar_layout(G)
+# NOV 25 --> Not setting pos to nx.planar_layout(G) because I want a specific diamond topology
+#pos = nx.planar_layout(G)
 
 
 @app.route("/")
@@ -118,7 +131,9 @@ def display_topology():
     plt.figure(figsize=(12,12))
 
     # Originally was drawn as planar, trying out different combos
-    nx.draw_planar(G, with_labels=True,
+    nx.draw(G,
+            pos, # added position of nodes 
+            with_labels=True,
             node_color="blue", 
             node_size=2000,
             font_size=10, 
@@ -154,8 +169,11 @@ def dijkstra():
         # Get edge weights for labeling
         edge_labels = nx.get_edge_attributes(G, "weight")
         filtered_edge_labels = {
-            (min(edge), max(edge)): f"{edge_labels[(min(edge), max(edge))]:.2f}" # 2 sig figs
-            for edge in shortest_path_edges
+            
+            #(min(edge), max(edge)): f"{edge_labels[(min(edge), max(edge))]:.2f}" # 2 sig figs
+            #for edge in shortest_path_edges
+            
+            edge: f"{edge_labels.get(edge, edge_labels.get((edge[1], edge[0]), 0)):.2f}" for edge in shortest_path_edges
         }
 
         # Create subgraph for shortest path
