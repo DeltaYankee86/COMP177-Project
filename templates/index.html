@@ -13,7 +13,14 @@
             <!--TODO: Specify to users what's the source node and the destination node-->
             <div class="selection-option"><a href="/display-topology" target="_blank">Display Topology</a></div>
             <!--TODO: Specify to users the nodes that are available to be killed from the source node to the destination node-->
-            <div class="selection-option"><a href="">Kill A Node</a></div>
+            <div class="selection-option">
+                <!--<a href="/kill-node">Kill A Node</a>-->
+                <form action="/kill-node" method="get">
+                    <label for="node">Enter Node to Remove:</label>
+                    <input type="text" id="node" name="node" placeholder="e.g., D" required>
+                    <button type="submit">Remove Node</button>
+                </form>
+            </div>
             <!--TODO: Specify to users what's the source node and the destination node-->
             <div class="selection-option"><a href="/dijkstra" target="_blank">Display Shortest Path</a></div>
             <div class="selection-option"><a href="/exit">Exit</a></div>

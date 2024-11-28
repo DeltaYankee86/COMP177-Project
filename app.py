@@ -151,10 +151,45 @@ def display_topology():
     return Response(img.getvalue(), mimetype='image/png')
 
 
+@app.route('/kill-node', methods=['GET'])
+def kill_node():
+    #print("Killing a node...I think")
+    node = request.args.get('node')
+    print(f"Received node to remove: {node}")
+
+    if not node:
+        return "No node specified. Please provide a valid node to remove.", 400
+    
+    if node not in G.nodes:
+        return f"Node '{node}' does not exist in the graph.", 404
+    
+    G.remove_node(node)
+    print(f"Node {node} and its edges have been removed.")
+
+    edge_labels = {k: f"{v:.2f}" for k, v in nx.get_edge_attributes(G, "weight").items()}
+
+    plt.figure(figsize=(12, 12))
+    nx.draw(G, pos, with_labels=True,
+            node_color="blue",
+            node_size=2000,
+            font_size=10,
+            font_color="white",
+            edge_color="gray")
+    
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels,
+                                 font_size=10,
+                                 label_pos=0.5)
+    
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plt.close()
+
+    return Response(img.getvalue(), mimetype='image/png')
+
 @app.route('/dijkstra')
 # Uses built-in dijkstra from networkx to find shortest path
 def dijkstra():
-
     # Use global graph G to compute the shortest path
     source = "A"
     # note --> Decreasing the graph size to minimize overlapping edge labels/nodes and crossing edges -- target = "N"
