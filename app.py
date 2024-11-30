@@ -15,56 +15,6 @@ app = Flask (__name__)
 G = nx.Graph()
 
 # Global nodes & edges
-"""
-edges = [
-    ("A", "B"),
-    ("A", "C"),
-    ("A", "D"),
-    ("B", "A"),
-    ("B", "E"),
-    ("B", "C"),
-    ("C", "A"),
-    ("C", "B"),
-    ("C", "D"),
-    ("C", "F"),
-    ("D", "A"),
-    ("D", "C"),
-    ("D", "G"),
-    ("E", "B"),
-    ("E", "F"),
-    ("E", "H"),
-    ("F", "C"),
-    ("F", "E"),
-    ("F", "G"),
-    ("F", "I"),
-    ("G", "D"),
-    ("G", "F"),
-    ("G", "J"),
-    ("H", "E"),
-    ("H", "I"),
-    ("H", "K"),
-    ("I", "F"),
-    ("I", "H"),
-    ("I", "J"),
-    ("I", "L"),
-    ("J", "G"),
-    ("J", "I"),
-    ("J", "M"),
-    ("K", "H"),
-    ("K", "L"),
-    ("K", "N"),
-    ("L", "I"),
-    ("L", "K"),
-    ("L", "M"),
-    ("L", "N"),
-    ("M", "J"),
-    ("M", "L"),
-    ("M", "N"),
-    ("N", "K"),
-    ("N", "L"),
-    ("N", "M")
-]
-"""
 # NOV 21 @2127 trying out a smaller graph goings from A to H
 edges = [
     ("A", "B"),
@@ -95,7 +45,7 @@ edges = [
     ("H", "G"),
 ]
 
-# Nodes in position of a diamond
+# Nodes in position of a diamond shape topology
 pos = {
     "A": (-2, 0),
     "B": (1, 2),
@@ -111,11 +61,6 @@ pos = {
 for edge in edges:
     weight = round(random.uniform(0, 1), 2) # Round to 2 sig figs
     G.add_edge(edge[0], edge[1], weight=weight)
-
-# Rolling with a planar layout to minimize crossing edges and overlapping nodes
-# NOV 25 --> Not setting pos to nx.planar_layout(G) because I want a specific diamond topology
-#pos = nx.planar_layout(G)
-
 
 @app.route("/")
 def home():
@@ -153,7 +98,6 @@ def display_topology():
 
 @app.route('/kill-node', methods=['GET'])
 def kill_node():
-    #print("Killing a node...I think")
     node = request.args.get('node')
     print(f"Received node to remove: {node}")
 
