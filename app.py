@@ -62,6 +62,9 @@ for edge in edges:
     weight = round(random.uniform(0, 1), 2) # Round to 2 sig figs
     G.add_edge(edge[0], edge[1], weight=weight)
 
+# Backup for the initial graph
+Initial_G = G.copy()
+
 @app.route("/")
 def home():
     return render_template('index.html')
@@ -227,7 +230,14 @@ def dijkstra():
         return Response(img.getvalue(), mimetype='image/png')
     except nx.NetworkXNoPath:
         return "No path exists between {} and {}".format(source, target), 404
-    
+
+@app.route('/reset', methods=['GET'])
+# Resets the graph back to it's initial topology
+def restore_graph():
+    global G
+    G = Initial_G.copy() # Reverts the graph back to initial state
+    return "Graph reverted back to its initial state.", 200
+
 @app.route('/exit')
 # Close program
 def exit():

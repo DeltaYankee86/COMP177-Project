@@ -23,13 +23,14 @@
             <div class="selection-option">
                 <form action="/edge-removal" method="get" target="_blank">
                     <label for="node_1">Enter the Two Nodes with an Edge to Remove: </label>
-                    <input type ="text" id="node_1" name="node_1" placeholder="A" maxlength="1" required>
-                    <input type="text" id="node_2" name="node_2" placeholder="B" maxlength="1" required>
+                    <input type ="text" id="node_1" name="node_1" placeholder="Example: A" maxlength="1" required>
+                    <input type="text" id="node_2" name="node_2" placeholder="Example: B" maxlength="1" required>
                     <button type="submit">Remove Edge</button>
                 </form>
             </div>
             <!--TODO: Specify to users what's the source node and the destination node-->
             <div class="selection-option"><a href="/dijkstra" target="_blank">Display Shortest Path</a></div>
+            <div class="selection-option"><a href="/reset" target="_blank">Restore Topology</a></div>
             <div class="selection-option"><a href="/exit">Exit</a></div>
         </div>
     </body>
