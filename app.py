@@ -15,7 +15,7 @@ app = Flask (__name__)
 G = nx.Graph()
 
 # Global nodes & edges
-# NOV 21 @2127 trying out a smaller graph goings from A to H
+# NOV 21 @2127 trying out a smaller graph going from A to H
 edges = [
     ("A", "B"),
     ("A", "C"),
@@ -182,7 +182,6 @@ def remove_edge():
 def dijkstra():
     # Use global graph G to compute the shortest path
     source = "A"
-    # note --> Decreasing the graph size to minimize overlapping edge labels/nodes and crossing edges -- target = "N"
     target = "H"
     
     # Check if source and target exists in graph
@@ -202,11 +201,7 @@ def dijkstra():
     
         # Get edge weights for labeling
         edge_labels = nx.get_edge_attributes(G, "weight")
-        filtered_edge_labels = {
-            
-            #(min(edge), max(edge)): f"{edge_labels[(min(edge), max(edge))]:.2f}" # 2 sig figs
-            #for edge in shortest_path_edges
-            
+        filtered_edge_labels = {           
             edge: f"{edge_labels.get(edge, edge_labels.get((edge[1], edge[0]), 0)):.2f}" for edge in shortest_path_edges
         }
 
