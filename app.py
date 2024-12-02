@@ -184,6 +184,15 @@ def dijkstra():
     source = "A"
     # note --> Decreasing the graph size to minimize overlapping edge labels/nodes and crossing edges -- target = "N"
     target = "H"
+    
+    # Check if source and target exists in graph
+    if source not in G.nodes or target not in G.nodes:
+        return f"Source node '{source}' or target node '{target}' does not exist in the current graph.", 404
+    
+    # Check if there's a path from the source and target nodes
+    if not nx.has_path(G, source, target):
+        return f"No path exists between the source node, '{source}', and target node, '{target}', in the current graph.", 404
+
     try:
         # Set's shortest path using Dijkstra's algorithm
         shortest_path = nx.dijkstra_path(G, source=source, target=target, weight="weight")
