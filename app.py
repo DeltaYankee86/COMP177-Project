@@ -95,20 +95,63 @@ def display_topology():
 
     return Response(img.getvalue(), mimetype='image/png')
 
-
+# Remove node function
 @app.route('/kill-node', methods=['GET'])
 def kill_node():
     node = request.args.get('node')
     print(f"Received node to remove: {node}")
 
+    # Check for specified node
     if not node:
         return "No node specified. Please provide a valid node to remove.", 400
     
+    # Check if specified node is on graph
     if node not in G.nodes:
         return f"Node '{node}' does not exist in the graph.", 404
     
+    # Remove specified node that is on the graph
     G.remove_node(node)
     print(f"Node {node} and its edges have been removed.")
+
+    edge_labels = {k: f"{v:.2f}" for k, v in nx.get_edge_attributes(G, "weight").items()}
+
+    plt.figure(figsize=(12, 12))
+    nx.draw(G, pos, with_labels=True,
+            node_color="blue",
+            node_size=2000,
+            font_size=10,
+            font_color="white",
+            edge_color="gray")
+    
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels,
+                                 font_size=10,
+                                 label_pos=0.5)
+    
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plt.close()
+
+    return Response(img.getvalue(), mimetype='image/png')
+
+# Remove edge function
+@app.route('/edge-removal', methods=['GET'])
+def remove_edge():
+    node1 = request.args.get('node_1')
+    node2 = request.args.get('node_2')
+    print(f"Received edge to remove: {node1} to {node2}")
+
+    # Check for valid nodes
+    if not node1 or not node2:
+        return "Both nodes of the edge must be specified. Please provide valid nodes.", 400
+    
+    # Check if valid nodes have a shared edge
+    if not G.has_edge(node1, node2):
+        return f"The edge from '{node1} to {node2} does not exist in the graph.", 404
+    
+    # Removes valid nodes & output to terminal the designated edge
+    G.remove_edge(node1, node2)
+    print(f"Edge from {node1} to {node2} has been removed.")
 
     edge_labels = {k: f"{v:.2f}" for k, v in nx.get_edge_attributes(G, "weight").items()}
 

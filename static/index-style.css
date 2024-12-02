@@ -22,7 +22,7 @@ hr{
 
 .selection-option{
     height: 60px;
-    width: 200px;
+    width: 800px;
     border: solid 2px white;
     border-radius: 2%;
     text-align: center;
@@ -40,4 +40,13 @@ hr{
     color: white;
     line-height: 60px;
     font-weight: 800;
+}
+
+form label{
+    line-height: 60px;
+    font-weight: 800;
+}
+
+input[type="text"]{
+    width: 100px;
 }
