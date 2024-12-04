@@ -1,0 +1,4 @@
+
+Flask==3.1.0
+mathplotlib==3.9.2
+networkx==3.4.2

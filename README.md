@@ -1,8 +1,17 @@
 # COMP177-Project
-Dynamic routing mechanism design in faulty network
+Dynamic routing mechanism design in faulty network using **Dijkstra's Algorithm**
 
-## Instructions to run code
-** I'm going to assume you don't have Python and the necessary libraries needed to run the project so here's the breakdown step by step on how to get the code to run.
+## Features
+- **Display Network Topology**: Users may visualize the current network graph with nodes, edges, and their weights
+
+- **Node Removal**: Users may select nodes to be simulated for failure and modify the network.
+
+- **Edge Removal**: Users may select specific edges to be simulated for failure and modify the network.
+
+- **Display Shortest Path**: Using Dijkstra's algorithm to compute the shortest between **Source Node A** and **Destination Node H***. 
+
+## Instructions to run code in terminal
+The following steps are to be followed whether 
 
 1) **Install Python3**
 
