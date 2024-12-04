@@ -1,4 +1,4 @@
-# COMP177-Project
+# COMP 177-Project
 Dynamic routing mechanism design in faulty network using **Dijkstra's Algorithm**
 
 ## Features
@@ -11,14 +11,15 @@ Dynamic routing mechanism design in faulty network using **Dijkstra's Algorithm*
 - **Display Shortest Path**: Using Dijkstra's algorithm to compute the shortest between **Source Node A** and **Destination Node H***. 
 
 ## Instructions to run code in terminal
-The following steps are to be followed whether 
+The following steps are to be followed to run the project in terminal, whether the project has been cloned or downloaded.
 
-1) **Install Python3**
+1) **cd** to the project's directory
 
-2) **Install matplotlib**
+2) Excute: pip install -r requirements.txt
 
-3) **Install networkx**
+3) After the required Python libraries are installed, execute the command: python app.py
 
-4) **Create Python virtual environment**
+4) Open a web browser and go to http://127.0.0.1:5000
 
-5) **Run Code**
+## Contributors
+- David Yang
